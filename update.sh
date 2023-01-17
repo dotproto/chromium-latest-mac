@@ -2,20 +2,25 @@
 
 cd $(dirname $0)
 
-LASTCHANGE_URL="https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2FLAST_CHANGE?alt=media"
+echo "Arg: $1"
 
-REVISION=$(curl -s -S $LASTCHANGE_URL)
+if [[ -z "$1" ]] ; then
 
-echo "latest revision is $REVISION"
+  LASTCHANGE_URL="https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac%2FLAST_CHANGE?alt=media"
+  REVISION=$(curl -s -S $LASTCHANGE_URL)
+  echo "latest revision is $REVISION"
 
-if [ -d $REVISION ] ; then
-  echo "already have latest version"
-  exit
+  if [ -d $REVISION ] ; then
+    echo "already have latest version"
+    exit
+  fi
+else
+  REVISION=$1
 fi
 
-ZIP_URL="https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F$REVISION%2Fchrome-linux.zip?alt=media"
+ZIP_URL="https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac%2F$REVISION%2Fchrome-mac.zip?alt=media"
 
-ZIP_FILE="${REVISION}-chrome-linux.zip"
+ZIP_FILE="${REVISION}-chrome-mac.zip"
 
 echo "fetching $ZIP_URL"
 
@@ -26,6 +31,9 @@ curl -# $ZIP_URL > $ZIP_FILE
 echo "unzipping.."
 unzip $ZIP_FILE
 popd
-rm -f ./latest
-ln -s $REVISION/chrome-linux/ ./latest
 
+# Update the latest alias only when run without arguments
+if [ $# -eq 0 ] ; then
+  rm -f ./latest
+  ln -s $REVISION/chrome-mac/ ./latest
+fi
