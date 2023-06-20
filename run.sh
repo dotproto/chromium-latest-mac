@@ -12,7 +12,7 @@ fi
 
 if [[ ! -z "$1" ]] ; then
   if [ -d "$BASEDIR/$1" ] ; then
-    VERSIONDIR=$1
+    VERSIONDIR=$1/chrome-mac
   else
     echo "Version \"$1\" not found"
     exit
