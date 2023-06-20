@@ -1,5 +1,5 @@
 # chromium-latest-linux
-Scripts to download and run the latest macOS build of Chromium.
+Scripts to download and run the latest macOS ARM build of Chromium.
 
 # About
 

@@ -6,7 +6,7 @@ echo "Arg: $1"
 
 if [[ -z "$1" ]] ; then
 
-  LASTCHANGE_URL="https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac%2FLAST_CHANGE?alt=media"
+  LASTCHANGE_URL="https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac_Arm%2FLAST_CHANGE?alt=media"
   REVISION=$(curl -s -S $LASTCHANGE_URL)
   echo "latest revision is $REVISION"
 
@@ -17,8 +17,7 @@ if [[ -z "$1" ]] ; then
 else
   REVISION=$1
 fi
-
-ZIP_URL="https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac%2F$REVISION%2Fchrome-mac.zip?alt=media"
+ZIP_URL="https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Mac_Arm%2F$REVISION%2Fchrome-mac.zip?alt=media"
 
 ZIP_FILE="${REVISION}-chrome-mac.zip"
 
