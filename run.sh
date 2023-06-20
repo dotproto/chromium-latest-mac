@@ -20,8 +20,8 @@ if [[ ! -z "$1" ]] ; then
 fi
 
 BASENAME="$(cd "$(dirname "$BASENAME")"; pwd)/$(basename "$BASENAME")"
+USER_DATA_DIR="$(realpath $BASENAME/user-data-dir)"
 
-open $BASEDIR/$VERSIONDIR/Chromium.app --args --user-data-dir="$BASEDIR/user-data-dir" ${*:2} &> /dev/null &
+open $BASEDIR/$VERSIONDIR/Chromium.app --args --user-data-dir="$USER_DATA_DIR" ${*:2} &> /dev/null &
 # open /Applications/Google\ Chrome\ Dev.app --args --user-data-dir="$BASEDIR/user-data-dir" ${*:2} &> /dev/null &
 # $BASEDIR/latest/chrome --user-data-dir="$BASEDIR/user-data-dir" $* &> /dev/null &
-
